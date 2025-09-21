@@ -14,6 +14,15 @@ dependencies {
     implementation(localGroovy()) // for groovy.json.JsonSlurper
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+kotlin {
+    jvmToolchain(21)
+}
+
 gradlePlugin {
     website.set("https://github.com/beengoo/run-folia")
     vcsUrl.set("https://github.com/beengoo/run-folia")
