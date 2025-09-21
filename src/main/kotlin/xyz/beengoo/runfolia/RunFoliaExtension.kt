@@ -2,6 +2,7 @@ package xyz.beengoo.runfolia
 
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.ListProperty
 import org.gradle.api.file.DirectoryProperty
 import javax.inject.Inject
 
@@ -9,23 +10,21 @@ abstract class RunFoliaExtension @Inject constructor(objects: ObjectFactory) {
     /** Minecraft version, e.g. 1.21.6 */
     val mcVersion: Property<String> = objects.property(String::class.java).convention("1.21.6")
 
-    /** Managed run directory (like run-paper). Default: build/run-folia */
+    /** Managed run directory (default is build/run-folia) */
     val runDir: DirectoryProperty = objects.directoryProperty()
 
-    /** Agree EULA automatically */
+    /** Auto-accept EULA on first run */
     val agreeEula: Property<Boolean> = objects.property(Boolean::class.java).convention(true)
 
-    /** Use links instead of copying plugin jar into plugins/ */
+    /** Try to link plugin jar into plugins/ (Windows: hardlink, *nix: symlink). Fallback to copy. */
     val linkPluginJar: Property<Boolean> = objects.property(Boolean::class.java).convention(true)
 
-    /** Extra JVM args for server launch */
-    val jvmArgs: Property<List<String>> = objects.listProperty(String::class.java).convention(emptyList())
+    /** Force re-download server jar even if it already exists */
+    val forceUpdate: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
 
-    /** Extra server args, e.g. ["--nogui"] */
-    val serverArgs: Property<List<String>> = objects.listProperty(String::class.java).convention(listOf("--nogui"))
+    /** Extra JVM args for server process */
+    val jvmArgs: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
 
-    init {
-        runDir.convention(objects.directoryProperty().fileValue(null)
-            .orElse(objects.directoryProperty()))
-    }
+    /** Extra server args (e.g. --nogui) */
+    val serverArgs: ListProperty<String> = objects.listProperty(String::class.java).convention(listOf("--nogui"))
 }
