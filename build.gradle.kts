@@ -31,7 +31,7 @@ gradlePlugin {
             id = "xyz.beengoo.run-folia"
             implementationClass = "xyz.beengoo.runfolia.RunFoliaPlugin"
             displayName = "Run Folia"
-            description = "Download and run Folia server with your plugin staged automatically."
+            description = "Simple gradle plugin to run and test minecraft plugins on folia server!"
             tags.set(listOf("minecraft", "folia", "paper", "server", "run"))
         }
     }
