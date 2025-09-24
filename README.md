@@ -1,4 +1,5 @@
 # Run Folia Server Gradle Plugin
+[![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/xyz.beengoo.run-folia.svg)](https://plugins.gradle.org/plugin/xyz.beengoo.run-folia)
 
 Gradle plugin to easily download and run a [Folia](https://github.com/PaperMC/Folia) server directly from your build.
 ## Usage
